@@ -1,11 +1,15 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'postgres',
-  host: 'localhost',
-  database: 'db',
+  host: 'db',
+  database: 'petshop',
   password: 'qwe543210',
-  port: 5432,
-})
+  port: 5432
+});
+
+pool.on('connect',() => {
+    console.log('Conexão estabelecida com sucesso')
+});
 
 const getUsers = (req,res) => {
     const id = parseInt(req.params.id)

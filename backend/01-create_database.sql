@@ -4,7 +4,8 @@ CREATE DATABASE "petshop"
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
-    \c petshop;
+
+\c petshop;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
