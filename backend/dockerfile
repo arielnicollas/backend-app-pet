@@ -1,0 +1,31 @@
+# # Use a imagem base do Node.js
+# FROM node:latest
+
+# # Defina o diretório de trabalho dentro do contêiner
+# WORKDIR /app
+
+# # Copie os arquivos de origem para o diretório de trabalho
+# COPY package*.json ./
+
+# # Instale as dependências do projeto
+# RUN npm install
+
+# # Copie todo o código-fonte para o diretório de trabalho
+# COPY . .
+
+FROM node:14
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+# Defina a porta que o contêiner expõe
+EXPOSE 3000
+
+# Comando para iniciar o servidor
+CMD ["node", "routes/register.js"]
+

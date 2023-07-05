@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: /backend
+      dockerfile: dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    networks:
+      - redecomunicacao
+    
+    environment:
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_NAME: db
+      DB_PASSWORD: qwe543210
+
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: qwe543210
+    ports:
+      - 5432:5432
+    networks:
+      - redecomunicacao  
+    volumes:
+      - ./01-create_database.sql:/docker-entrypoint-initdb.d/01-create_database.sql
+      - ./02-insert-users.sql:/docker-entrypoint-initdb.d/02-insert-users.sql
+    
+networks:
+  redecomunicacao:
+    driver: bridge
