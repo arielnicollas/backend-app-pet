@@ -3,6 +3,11 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 const db = require(`../services/queries`)
+const getId = require(`../controllers/getUsersById`)
+const reqPost = require(`../controllers/postUsers`)
+const reqUpdate = require(`../controllers/updateUsers`)
+const reqDelete = require(`../controllers/deleteUsers`)
+const { query } = require('express-validator'); 
 
 app.use(bodyParser.json())
 app.use(
@@ -11,11 +16,11 @@ app.use(
   })
 )
 
-app.get('/users', db.getUsers)
-app.get('/users/:id', db.getUserById)
-app.post('/users', db.createUser)
-app.put('/users/:id', db.updateUser)
-app.delete('/users/:id', db.deleteUser)
+// app.get('/users', db.getUsers)
+app.get('/users/:id', getId.getUserById) 
+app.post('/users', reqPost.createUser)
+app.put('/users/:id', reqUpdate.updateUsers)
+app.delete('/users/:id', reqDelete.deleteUsers) 
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
@@ -46,51 +51,7 @@ app.listen(port, () => {
 
 
 
-// app.get('/', (req, res) => {
-//     res.json(
-//        {
-//             name: 'Ariel',
-//             telephone: '34998550207',
-//             email: 'frplly@gmail.com',
-//             document: '111.230.906-37'
-//         }
-//     ) 
-// })
 
-// app.post('/register', (req, res) => {
-//     res.json(
-//        {
-//             name: 'Ariel',
-//             telephone: '34998550207',
-//             email: 'frplly@gmail.com',
-//             document: '111.230.906-37'
-//         }
-//     ) 
-//     })
-
-
-// app.put('/register', (req, res) => {
-//     res.json(
-//        {
-//             name: 'Ariel',
-//             telephone: '34998550207',
-//             email: 'frplly@gmail.com',
-//             document: '111.230.906-37'
-//         }
-//     ) 
-// })
-
-
-// app.delete('/register', (req, res) => {
-//     res.json(
-//        {
-//             name: 'Ariel',
-//             telephone: '34998550207',
-//             email: 'frplly@gmail.com',
-//             document: '111.230.906-37'
-//         }
-//     ) 
-// })
 
 
 
