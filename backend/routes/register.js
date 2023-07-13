@@ -2,12 +2,12 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
-const db = require(`../services/queries`)
+// const db = require(`../services/queries`)
 const getId = require(`../controllers/getUsersById`)
 const reqPost = require(`../controllers/postUsers`)
 const reqUpdate = require(`../controllers/updateUsers`)
 const reqDelete = require(`../controllers/deleteUsers`)
-const { query } = require('express-validator'); 
+// const { query } = require('express-validator'); 
 
 app.use(bodyParser.json())
 app.use(
